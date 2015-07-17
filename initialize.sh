@@ -15,11 +15,12 @@ service ssh restart
 set +e
 
 # add admin user(group)
-`getent group admin`
+getent group admin
 if [ $? != '0' ]; then
     groupadd admin
 fi
-`id admin`
+
+id admin
 if [ $? != '0' ]; then
     useradd admin -m -g admin -s /bin/bash
     echo "admin ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/admin
@@ -30,7 +31,7 @@ set -e
 
 # set admin public key
 export ADMIN_HOME=`sudo -H -u admin printenv HOME`
-export PUBLIC_KEY="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9nkt/SfBtLp9SoUNwpcP6BfjbaSgYJsNeUXfFaY1RNjXT6a5CxoxgxIlo3TiTxuLOHkAazhUaEz/1S70AUguekNC6+7rzS81dir+YVk9Jwq9Gh1xDfSzEG4zWLGu/nqBbwk7KgDhkXsQ4EFun5cm/C7hnOQeAYVdAIxol3yMtSLNiYYXp9n0+NhgTh5UWEDEFiWQpRd8ZrHaUEPjI8EypwEe/mxSz+PMYGKZ3wccY1pN6d7CsDr+r7VrGIByu4auC292U5peRxrfBDBwDShCNNmjii/0025DWUs88OBPtFRzk5bzQR2c9n2Z+2n1hGeFhHCclpghtGGNdGMO8Y4FZ hidenori-kondo@MGXA2JA.local"
+export PUBLIC_KEY="ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA1wNcw1ApKtyFSXWfD9sj3bckLx0sSgFrQj3xGK3dWvFfOATraGrjUJ3LofScUtFhDKkJZPdzY60w/ccQIACDsoUXUCRRqfyShWgPOAc3R9y01VQVPpxbnpyo5Cg9XaZ/RAKQxmlXHMaaQKOP1/MWjAPQXzZo2Xd91XuCScihB87lNowSMy6+kQ5sOWIhaf4yWrPKZwM+fcEQWU/F4FNz+lrcVi6fjXe5ZSHnd0uz8H84LYk+eL00p5gH+gT0wfgG/uOWg2J5g7uvUeKo0HZ9WO/VSWrovfy6OP2KCUPXXAr4ygBfOtbrxNIZBd9DLFNTm6a+tOHs4W58rYKWLgNLhw== root@P8Z77-V"
 mkdir -p $ADMIN_HOME/.ssh/
 chmod 700 $ADMIN_HOME/.ssh
 echo $PUBLIC_KEY > $ADMIN_HOME/.ssh/authorized_keys
