@@ -12,18 +12,22 @@ fi
 sed -i -e "s/PasswordAuthentication yes/PasswordAuthentication no/g" /etc/ssh/sshd_config
 service ssh restart
 
+set +e
+
 # add admin user(group)
-getent group admin || true
+getent group admin
 if [ $? != '0' ]; then
     groupadd admin
 fi
 
-id admin || true
+id admin
 if [ $? != '0' ]; then
     useradd admin -m -g admin -s /bin/bash
     echo "admin ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/admin
     chmod 0440 /etc/sudoers.d/admin
 fi
+
+set -e
 
 # set admin public key
 export ADMIN_HOME=`sudo -H -u admin printenv HOME`
