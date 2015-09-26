@@ -31,9 +31,8 @@ set -e
 
 # set admin public key
 export ADMIN_HOME=`sudo -H -u admin printenv HOME`
-export PUBLIC_KEY="ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA1wNcw1ApKtyFSXWfD9sj3bckLx0sSgFrQj3xGK3dWvFfOATraGrjUJ3LofScUtFhDKkJZPdzY60w/ccQIACDsoUXUCRRqfyShWgPOAc3R9y01VQVPpxbnpyo5Cg9XaZ/RAKQxmlXHMaaQKOP1/MWjAPQXzZo2Xd91XuCScihB87lNowSMy6+kQ5sOWIhaf4yWrPKZwM+fcEQWU/F4FNz+lrcVi6fjXe5ZSHnd0uz8H84LYk+eL00p5gH+gT0wfgG/uOWg2J5g7uvUeKo0HZ9WO/VSWrovfy6OP2KCUPXXAr4ygBfOtbrxNIZBd9DLFNTm6a+tOHs4W58rYKWLgNLhw== root@P8Z77-V"
 mkdir -p $ADMIN_HOME/.ssh/
 chmod 700 $ADMIN_HOME/.ssh
-echo $PUBLIC_KEY > $ADMIN_HOME/.ssh/authorized_keys
+curl -fsSL https://github.com/emuesuenu.keys > $ADMIN_HOME/.ssh/authorized_keys
 chmod 600 $ADMIN_HOME/.ssh/authorized_keys
 chown -R admin:admin $ADMIN_HOME/.ssh
