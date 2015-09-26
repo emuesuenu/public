@@ -1,4 +1,6 @@
-#!/usr/bin/env bash -eu
+#!/usr/bin/env bash
+
+set -eu
 
 # sshd setting
 export SSHD_CONFIG=/etc/ssh/sshd_config
