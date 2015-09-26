@@ -32,7 +32,7 @@ set -e
 # set admin public key
 export ADMIN_HOME=`sudo -H -u admin printenv HOME`
 mkdir -p $ADMIN_HOME/.ssh/
-chmod 700 $ADMIN_HOME/.ssh
 curl -fsSL https://github.com/emuesuenu.keys > $ADMIN_HOME/.ssh/authorized_keys
+chmod 700 $ADMIN_HOME/.ssh
 chmod 600 $ADMIN_HOME/.ssh/authorized_keys
 chown -R admin:admin $ADMIN_HOME/.ssh
