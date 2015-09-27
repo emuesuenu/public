@@ -12,6 +12,9 @@ fi
 sed -i -e "s/PasswordAuthentication yes/PasswordAuthentication no/g" /etc/ssh/sshd_config
 service ssh restart
 
+sudo apt-get update
+sudo apt-get install -y curl
+
 set +e
 
 # add admin user(group)
