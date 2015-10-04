@@ -39,3 +39,5 @@ curl -fsSL https://github.com/emuesuenu.keys > $ADMIN_HOME/.ssh/authorized_keys
 chmod 700 $ADMIN_HOME/.ssh
 chmod 600 $ADMIN_HOME/.ssh/authorized_keys
 chown -R admin:admin $ADMIN_HOME/.ssh
+
+echo success
