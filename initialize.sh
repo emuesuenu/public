@@ -2,6 +2,9 @@
 
 set -eu
 
+sudo apt-get update
+sudo apt-get install -y curl openssh-server
+
 # sshd setting
 export SSHD_CONFIG=/etc/ssh/sshd_config
 if [ ! -e $SSHD_CONFIG.orig ]; then
@@ -11,9 +14,6 @@ else
 fi
 sed -i -e "s/PasswordAuthentication yes/PasswordAuthentication no/g" /etc/ssh/sshd_config
 service ssh restart
-
-sudo apt-get update
-sudo apt-get install -y curl
 
 set +e
 
