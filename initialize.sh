@@ -12,7 +12,7 @@ if [ ! -e $SSHD_CONFIG.orig ]; then
 else
     sudo cp $SSHD_CONFIG.orig $SSHD_CONFIG
 fi
-sed -i -e "s/PasswordAuthentication yes/PasswordAuthentication no/g" /etc/ssh/sshd_config
+sed -i -e 's/.*PasswordAuthentication.*/PasswordAuthentication no/g' /etc/ssh/sshd_config
 service ssh restart
 
 set +e
